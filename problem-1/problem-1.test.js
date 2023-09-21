@@ -3,12 +3,10 @@ const bubbleSort = (array) => {
   // 첫 패스 때 1개의 정렬이 완료됨
   // 마지막 패스 때 array.length - 1개의 원소가 정렬됨
   // array.length - 1개가 원소가 정렬되면 마지막 원소는 정렬할 필요가 없다.
-  for (let i = 1; i < array.length; i++) {
-    for (let j = 0; j < array.length - i; j++) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - 1 - i; j++) {
       if (array[j] > array[j + 1]) {
-        const temp = array[j + 1];
-        array[j + 1] = array[j];
-        array[j] = temp;
+        [array[j + 1], array[j]] = [array[j], array[j + 1]];
       }
     }
   }
