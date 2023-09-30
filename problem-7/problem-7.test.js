@@ -1,4 +1,87 @@
+const exchange = (array, a, b) => {
+  [array[b], array[a]] = [array[a], array[b]];
+};
+
+const initializeHeap = (array) => {
+  const mid = Math.floor((array.length - 1) / 2);
+
+  // initialize heap
+  for (let i = mid; i > 0; i--) {
+    let index = i;
+
+    while (index <= mid) {
+      const leftIndex = 2 * index;
+      const rightIndex = 2 * index + 1;
+
+      const current = array[index];
+      const leftChild = array[leftIndex];
+      const rightChild = array[rightIndex] ?? 0;
+
+      const max = Math.max(leftChild, rightChild);
+
+      if (current >= max) {
+        break;
+      }
+
+      if (leftChild >= rightChild) {
+        exchange(array, index, leftIndex);
+
+        index = leftIndex;
+      } else {
+        exchange(array, index, rightIndex);
+
+        index = rightIndex;
+      }
+    }
+  }
+};
+
+const sort = (array, lastIndex) => {
+  if (lastIndex <= 1) {
+    return;
+  }
+
+  const mid = Math.floor(lastIndex / 2);
+
+  const rootIndex = 1;
+
+  // root 교체
+  exchange(array, rootIndex, lastIndex);
+
+  // sync
+  let index = rootIndex;
+
+  while (index <= mid) {
+    const leftIndex = 2 * index;
+    const rightIndex = 2 * index + 1;
+
+    const current = array[index];
+    const leftChild = leftIndex < lastIndex ? array[leftIndex] : 0;
+    const rightChild = rightIndex < lastIndex ? array[rightIndex] : 0;
+
+    const max = Math.max(leftChild, rightChild);
+
+    if (current >= max) {
+      break;
+    }
+
+    if (leftChild >= rightChild) {
+      exchange(array, index, leftIndex);
+
+      index = leftIndex;
+    } else {
+      exchange(array, index, rightIndex);
+
+      index = rightIndex;
+    }
+  }
+
+  sort(array, lastIndex - 1);
+};
+
 const heapSort = (array) => {
+  initializeHeap(array);
+  sort(array, array.length - 1);
 };
 
 test.each([
