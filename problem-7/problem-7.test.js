@@ -2,86 +2,47 @@ const exchange = (array, a, b) => {
   [array[b], array[a]] = [array[a], array[b]];
 };
 
-const initializeHeap = (array) => {
-  const mid = Math.floor((array.length - 1) / 2);
+const less = (a, b) => a < b;
 
-  // initialize heap
-  for (let i = mid; i > 0; i--) {
-    let index = i;
+const sink = (array, i, N) => {
+  // 자식 노드가 있을 때까지 반복
+  while (2 * i <= N) {
+    // 왼쪽 자식 노드부터 탐색
+    let j = 2 * i;
 
-    while (index <= mid) {
-      const leftIndex = 2 * index;
-      const rightIndex = 2 * index + 1;
-
-      const current = array[index];
-      const leftChild = array[leftIndex];
-      const rightChild = array[rightIndex] ?? 0;
-
-      const max = Math.max(leftChild, rightChild);
-
-      if (current >= max) {
-        break;
-      }
-
-      if (leftChild >= rightChild) {
-        exchange(array, index, leftIndex);
-
-        index = leftIndex;
-      } else {
-        exchange(array, index, rightIndex);
-
-        index = rightIndex;
-      }
+    // 오른쪽 자식 노드가 더 클 경우
+    if (j < N && less(array[j], array[j + 1])) {
+      j++;
     }
-  }
-};
 
-const sort = (array, lastIndex) => {
-  if (lastIndex <= 1) {
-    return;
-  }
-
-  const mid = Math.floor(lastIndex / 2);
-
-  const rootIndex = 1;
-
-  // root 교체
-  exchange(array, rootIndex, lastIndex);
-
-  // sync
-  let index = rootIndex;
-
-  while (index <= mid) {
-    const leftIndex = 2 * index;
-    const rightIndex = 2 * index + 1;
-
-    const current = array[index];
-    const leftChild = leftIndex < lastIndex ? array[leftIndex] : 0;
-    const rightChild = rightIndex < lastIndex ? array[rightIndex] : 0;
-
-    const max = Math.max(leftChild, rightChild);
-
-    if (current >= max) {
+    // 더 이상 정렬할 필요가 없을 경우
+    if (!less(array[i], array[j])) {
       break;
     }
 
-    if (leftChild >= rightChild) {
-      exchange(array, index, leftIndex);
+    exchange(array, i, j);
 
-      index = leftIndex;
-    } else {
-      exchange(array, index, rightIndex);
-
-      index = rightIndex;
-    }
+    // 자식 노드로 이동
+    i = j;
   }
-
-  sort(array, lastIndex - 1);
 };
 
 const heapSort = (array) => {
-  initializeHeap(array);
-  sort(array, array.length - 1);
+  let N = array.length - 1;
+
+  for (let i = Math.floor(N / 2); i >= 1; i--) {
+    sink(array, i, N);
+  }
+
+  while (N > 1) {
+    // 루트 노드와 제일 마지막 노드 교환
+    exchange(array, 1, N);
+
+    // 마지막 노드는 정렬되었으니 sync할 항목에서 제외
+    N--;
+
+    sink(array, 1, N);
+  }
 };
 
 test.each([
