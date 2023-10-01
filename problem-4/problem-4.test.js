@@ -1,4 +1,26 @@
-const shellSort = (array) => {
+const exchange = (list, a, b) => {
+  [list[b], list[a]] = [list[a], list[b]];
+};
+
+const less = (a, b) => a < b;
+
+const shellSort = (list) => {
+  let h = 1;
+  const { length } = list;
+
+  while (h < (length / 3)) {
+    h = (3 * h) + 1;
+  }
+
+  for (let k = h; k >= 1; k = Math.floor(k / 3)) {
+    for (let i = k; i < length; i++) {
+      for (let j = i; j >= k; j--) {
+        if (less(list[j], list[j - k])) {
+          exchange(list, j, j - k);
+        }
+      }
+    }
+  }
 };
 
 test.each([
