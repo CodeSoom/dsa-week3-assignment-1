@@ -1,4 +1,21 @@
 const bubbleSort = (array) => {
+  const len = array.length;
+
+  for (let i = 0; i < len; i++) {
+    let isChanged = false;
+    for (let j = 0; j < len - i; j++) {
+      if (array[j] > array[j + 1]) {
+        isChanged = true;
+        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+      }
+    }
+
+    if (!isChanged) {
+      return array;
+    }
+  }
+
+  return array;
 };
 
 test.each([

@@ -1,4 +1,32 @@
-const mergeSort = (array) => {
+const merge = (array, start, mid, end) => {
+  let left = start;
+  let right = mid + 1;
+
+  const temp = [...array];
+
+  for (let i = start; i <= end; i++) {
+    if (left > mid) {
+      array[i] = temp[right++];
+    } else if (right > end) {
+      array[i] = temp[left++];
+    } else if (temp[left] < temp[right]) {
+      array[i] = temp[left++];
+    } else {
+      array[i] = temp[right++];
+    }
+  }
+};
+
+const mergeSort = (array, start = 0, end = array.length - 1) => {
+  if (start >= end) {
+    return;
+  }
+
+  const mid = Math.floor((start + end) / 2);
+
+  mergeSort(array, start, mid);
+  mergeSort(array, mid + 1, end);
+  merge(array, start, mid, end);
 };
 
 test.each([

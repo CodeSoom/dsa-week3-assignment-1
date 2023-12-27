@@ -1,4 +1,19 @@
 const shellSort = (array) => {
+  let h = Math.floor(array.length / 2);
+
+  while (h >= 1) {
+    for (let i = h; i < array.length; i++) {
+      for (let j = i; j >= 0; j = j - h) {
+        if (array[j] < array[j - h]) {
+          [array[j], array[j - h]] = [array[j - h], array[j]];
+        }
+      }
+    }
+
+    h = Math.floor(h / 2);
+  }
+
+  return array;
 };
 
 test.each([
