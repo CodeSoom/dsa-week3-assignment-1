@@ -14,5 +14,13 @@
 ```
 
 2. 퀵 정렬의 코드를 보고 어떻게 동작하는지 그림을 그려보세요. 마찬가지로 위의 값이 주어졌다고 했을 때 코드를 따라가며 그림을 그려가며 이해해 보세요.
+![quick-sort-code-01.png](quick-sort-code-01.png)
+![quick-sort-code-02.png](quick-sort-code-02.png)
+![quick-sort-code-03.png](quick-sort-code-03.png)
+![quick-sort-code-04.png](quick-sort-code-04.png)
+![quick-sort-code-05.png](quick-sort-code-05.png)
+![quick-sort-code-06.png](quick-sort-code-06.png)
+![quick-sort-code-07.png](quick-sort-code-07.png)
+![quick-sort-code-08.png](quick-sort-code-08.png)
 
 3. 퀵 정렬의 코드를 직접 구현해 주세요.
