@@ -13,5 +13,14 @@
 ```
 
 2. 힙 정렬의 코드를 보고 어떻게 동작하는지 그림을 그려보세요. 마찬가지로 위의 값이 주어졌다고 했을 때 코드를 따라가며 그림을 그려가며 이해해 보세요.
+![heap-sort.png](heap-sort.png)
+![heap-sort-sink-01.png](heap-sort-sink-01.png)
+![heap-sort-sink-02.png](heap-sort-sink-02.png)
+![heap-sort-sink-03-01.png](heap-sort-sink-03-01.png)
+![heap-sort-sink-03-02.png](heap-sort-sink-03-02.png)
+![heap-sort-sink-04-01.png](heap-sort-sink-04-01.png)
+![heap-sort-sink-04-02.png](heap-sort-sink-04-02.png)
+![heap-sort-sink-04-03.png](heap-sort-sink-04-03.png)
+![heap-sort-sink-05.png](heap-sort-sink-05.png)
 
 3. 힙 정렬의 코드를 직접 구현해 주세요.
