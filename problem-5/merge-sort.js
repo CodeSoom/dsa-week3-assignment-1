@@ -1,17 +1,5 @@
 const less = (a, b) => a < b;
 
-const mergeSort = (list, start = 0, end = list.length - 1) => {
-  if (start >= end) {
-    return;
-  }
-
-  const mid = Math.floor((start + end) / 2);
-
-  mergeSort(list, start, mid);
-  mergeSort(list, mid + 1, end);
-  merge(list, start, mid, end);
-};
-
 const merge = (list, start, mid, end) => {
   let left = start;
   let right = mid + 1;
@@ -33,6 +21,17 @@ const merge = (list, start, mid, end) => {
       right++;
     }
   }
+};
+const mergeSort = (list, start = 0, end = list.length - 1) => {
+  if (start >= end) {
+    return;
+  }
+
+  const mid = Math.floor((start + end) / 2);
+
+  mergeSort(list, start, mid);
+  mergeSort(list, mid + 1, end);
+  merge(list, start, mid, end);
 };
 
 module.exports = {
