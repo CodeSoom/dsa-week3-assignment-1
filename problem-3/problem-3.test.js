@@ -1,16 +1,21 @@
+const exchange = (list, a, b) => {
+  [list[b], list[a]] = [list[a], list[b]];
+};
+
+const less = (a, b) => a < b;
+
 const insertionSort = (array) => {
-  for (let i = 1; i < array.length; i++) {
-    let current = array[i];
-    let j;
+  const { length } = array;
 
-    for (j = i; j > 0 && array[j - 1] > current; j--) {
-      array[j] = array[j - 1];
+  for (let i = 1; i < length; i++) {
+    for (let j = i; j > 0; j--) {
+      if (array[j] < array[j - 1]) {
+        [array[j - 1], array[j]] = [array[j], array[j - 1]];
+      } else {
+        break;
+      }
     }
-
-    array[j] = current;
   }
-
-  return array;
 };
 
 // 테스트
