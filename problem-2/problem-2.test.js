@@ -1,5 +1,30 @@
+const exchange = (array, i, j) => {
+  [array[i], array[j]] = [array[j], array[i]];
+}
+
+const findMinIndex = (array, startIndex) => {
+  let minIndex = startIndex;
+
+  for(let i = startIndex; i < array.length; i++){
+    if(array[minIndex] > array[i]){
+      minIndex = i;
+    }
+  }
+
+  return minIndex;
+}
+
 const selectionSort = (array) => {
-};
+  for(let i = 0; i <= array.length; i++){
+    const minIndex = findMinIndex(array, i);
+
+    if(minIndex === i ){
+      continue;
+    }
+
+    exchange(array, i , minIndex);
+  }
+}
 
 test.each([
   [[5, 4, 3, 2, 1]],

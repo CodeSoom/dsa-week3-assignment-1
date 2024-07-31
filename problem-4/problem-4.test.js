@@ -1,4 +1,27 @@
+const exchange = (array, j, i) => {
+  [array[j], array[i]] = [array[i], array[j]];
+}
+
 const shellSort = (array) => {
+  let gap = Math.floor(array.length / 2);
+
+  while(gap > 0){
+    for(let i = gap; i < array.length; i++){
+      for(let j = i; j >= 0; j = j - gap){
+
+        if(array[j] < array[j - gap]){
+          exchange(array, j, j - gap);
+        }else {
+          break;
+        }
+
+      }
+    }
+
+    gap = Math.floor(gap / 2);
+  }
+
+
 };
 
 test.each([
